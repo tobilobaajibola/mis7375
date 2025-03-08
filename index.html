@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!-- Program name: patient-form.html
+Author: Tobiloba Ajibola
+Date created: 02-12-2025
+Date last edited:  02-14-2025
+Version: 1.0
+Description: This is a hospital appoitnment form -->
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Patient Form</title>
+	<style type="text/css"></style>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+	<header>
+		<div class="column2"><img src="assets/images/logo.png" class="hca_logo" /> </div>
+		<div class="column2"><script>document.write(new Date().toDateString());</script></div>
+	</header>
+	<main id="main">
+		<div class="mainform">
+			<form>
+				<fieldset>
+				<div class="formsection">
+					<h3>Create Patient Portal</h3>
+					<div class="row">
+						<div class="column3">
+							<div class="forminput ">
+								<label id="firstname">First Name</label>
+								<input type="text" name="first_name" value="" placeholder="First Name" maxlength="30" required>
+							</div>
+						</div>
+						<div class="column3">
+							<div class="forminput">
+								<label>Middle Name</label>
+								<input type="text" name="middle_name" placeholder="Last Name"  maxlength="1">
+							</div>
+						</div>
+						<div class="column3">
+							<div class="forminput">
+								<label>First Name</label>
+								<input type="text" name="last_name" placeholder="Last Name" required maxlength="30">
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<p>Gender</p>
+						<span>Male</span><input type="radio" name="gender" value="male" required title="Select Male">
+						<span>Female</span><input type="radio" name="gender" value="female" required title="Select Female">
+						<span>Others</span><input type="radio" name="gender" value="others" required>
+					</div>
+					<div class="row">
+						<div class="column1">
+							<div class="forminput">
+								<label>Date Of Birth</label>
+								<input type="date" name="date_of_birth" value="" placeholder="Enter date of birth" required title="Enter Date of birth">
+							</div>
+						</div>
+						<div class="column1">
+							<div class="forminput">
+								<label>Social Security Number</label>
+								<input type="password" name="ssn" placeholder="Your Social Security Number" required>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+				<fieldset>
+				<div class="formsection">
+					<h3>Patient Contact Information</h3>
+					
+						<div class="column1">
+							<div class="forminput">
+								<label>Address Line 1</label>
+								<input type="text" name="address1" value="" placeholder="Enter Address" maxlength="30" required title="Enter Address">
+							</div>
+						</div>
+							<div class="column1">
+							<div class="forminput">
+								<label>Address Line 2</label>
+								<input type="text" name="address2" value="" placeholder="Enter Address" maxlength="30">
+							</div>
+						</div>
+					<div class="row">
+						<div class="column3">
+							<div class="forminput">
+								<label>City</label>
+								<input type="text" name="city" value="" placeholder="Enter City" maxlength="30" required>
+							</div>
+						</div>
+						<div class="column3">
+							<div class="forminput">
+								<label>States</label>
+								<select name="states" >
+									<option value="">Select State</option>
+	                        <option value="AL">Alabama</option>
+	                        <option value="AK">Alaska</option>
+	                        <option value="AZ">Arizona</option>
+	                        <option value="AR">Arkansas</option>
+	                        <option value="CA">California</option>
+	                        <option value="CO">Colorado</option>
+	                        <option value="CT">Connecticut</option>
+	                        <option value="DE">Delaware</option>
+	                        <option value="DC">District of Columbia</option>
+	                        <option value="FL">Florida</option>
+	                        <option value="GA">Georgia</option>
+	                        <option value="HI">Hawaii</option>
+	                        <option value="ID">Idaho</option>
+	                        <option value="IL">Illinois</option>
+	                        <option value="IN">Indiana</option>
+	                        <option value="IA">Iowa</option>
+	                        <option value="KS">Kansas</option>
+	                        <option value="KY">Kentucky</option>
+	                        <option value="LA">Louisiana</option>
+	                        <option value="ME">Maine</option>
+	                        <option value="MD">Maryland</option>
+	                        <option value="MA">Massachusetts</option>
+	                        <option value="MI">Michigan</option>
+	                        <option value="MN">Minnesota</option>
+	                        <option value="MS">Mississippi</option>
+	                        <option value="MO">Missouri</option>
+	                        <option value="MT">Montana</option>
+	                        <option value="NE">Nebraska</option>
+	                        <option value="NV">Nevada</option>
+	                        <option value="NH">New Hampshire</option>
+	                        <option value="NJ">New Jersey</option>
+	                        <option value="NM">New Mexico</option>
+	                        <option value="NY">New York</option>
+	                        <option value="NC">North Carolina</option>
+	                        <option value="ND">North Dakota</option>
+	                        <option value="OH">Ohio</option>
+	                        <option value="OK">Oklahoma</option>
+	                        <option value="OR">Oregon</option>
+	                        <option value="PA">Pennsylvania</option>
+	                        <option value="RI">Rhode Island</option>
+	                        <option value="SC">South Carolina</option>
+	                        <option value="SD">South Dakota</option>
+	                        <option value="TN">Tennessee</option>
+	                        <option value="TX">Texas</option>
+	                        <option value="UT">Utah</option>
+	                        <option value="VT">Vermont</option>
+	                        <option value="VA">Virginia</option>
+	                        <option value="WA">Washington</option>
+	                        <option value="WV">West Virginia</option>
+	                        <option value="WI">Wisconsin</option>
+	                        <option value="WY">Wyoming</option>
+								</select>
+							</div>
+						</div>
+						<div class="column3">
+							<div class="forminput">
+								<label>Zip code</label>
+								<input type="text" name="zipcode" placeholder="Enter Zip code" maxlength="10" required title="Enter Zipcode">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					<div class="column1">
+							<div class="forminput">
+								<label>Email Address</label>
+								<input type="email" name="email" value="" placeholder="example@email.com" required maxlength="30" title="Enter email e.g example@mail.com">
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column1">
+							<div class="forminput">
+								<label>Phone number</label>
+								<input type="text" name="phone" value="" placeholder="(000) 000 000" maxlength="10" title="Enter a 10-digit phone number.">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<div class="formsection">
+					<h3>Reason for Visit</h3>
+					<div>
+						<div class="row">
+							<p>Fever</p><input type="checkbox" name="visitreason" value="Fever">
+							<p>Vaccination</p><input type="checkbox" name="visitreason" value="Vaccination">
+							<p>Checkup</p><input type="checkbox" name="visitreason" value="Checkup">
+							<p>Second Opinion</p><input type="checkbox" name="visitreason" value="Second Opinion">
+							<p>Allegy</p><input type="checkbox" name="visitreason" value="Allegy">
+							<p>Others</p><input type="checkbox" name="visitreason" value="Others">
+					</div>
+					
+					<div class="column1">
+					<p>If you selected any of the above, please explain</p>
+							<div class="forminput">
+								<label>Explain</label>
+								<textarea rows="3" name="explainreason" placeholder="Explain reason for visit" cols="50"></textarea>
+							</div>
+						</div>
+					</div>
+					<p>Vaccination status</p>
+						<div class="column1">
+							<span>Yes</span><input type="radio" name="vaccination" value="yes" checked required>
+							<span>No</span><input type="radio" name="vaccination" value="no" required>
+							
+					</div>
+
+					<p>Insurance status</p>
+						<div class="column1">
+							<span>Yes</span><input type="radio" name="insurance" value="yes" checked  required>
+							<span>No</span><input type="radio" name="insurance" value="no" required>
+					</div>
+					<p>Urgency of Appointment (Rate from 1-10)</p>
+					<input type="range" name="" min="1" max="10" step="1" value="0">
+				</div>
+			</fieldset>
+				<fieldset>
+				<div class="formsection">
+					<h3>Finish Patient Portal Account</h3>
+				<div >
+					<div class="row">
+					<div class="column1">
+							<div class="forminput">
+								<label>Username</label>
+								<input type="text" name="" placeholder="Enter Username" maxlength="20" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column2">
+							<div class="forminput">
+								<label>Password</label>
+								<input type="password" name="password" value="" placeholder="Enter Password" required>
+							</div>
+						</div>
+						<div class="column2">
+							<div class="forminput">
+								<label>Confirm Password</label>
+								<input type="password" name="confirmpassword" value="" placeholder="Re-enter Password" required>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			</fieldset>
+			<fieldset>
+			<table>
+				<tr>
+					<td></td>
+					<td></td>
+					<!-- <td class="button"><button class="resetbutton" id="reviewButton"><a href="#">  Reset</a></button></td> -->
+					<td class="button"><button class="reviewbutton"  id="reviewButton"><a href="#">  Review</a></button></td>
+					<td class="button"><button type="submit" id="finalSubmit" style="display:none;" class="submitbutton">Submit</button></td>
+					
+
+				</tr>
+			</table>
+		</fieldset>
+			</form>
+		</div>
+		<div id="reviewModal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%); background:white; padding:20px; border:1px solid black;">
+    <h3>Review Your Details</h3>
+    <div id="reviewContent"></div>
+    <button type="button" id="editButton">Edit</button>
+    <button type="submit" id="confirmSubmit">Confirm & Submit</button>
+</div>
+	</main>
+	<footer>
+		<div class="row">
+		<div class="column2"><img src="assets/images/logo.png" class="hca_logo" /> </div>
+		<div class="column2"> <a href ="#">Contack US</a></div>
+	</div>
+	</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script  src="assets/js/script.js"></script>
+</body>
+</html>

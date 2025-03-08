@@ -1,0 +1,245 @@
+/* 
+ 	Program name: patient-form.html
+	Author: Tobiloba Ajibola
+	Date created: 02-12-2025
+	Date last edited:  02-14-2025
+	Version: 1.0
+	Description: This is a hospital appoitnment form
+ */
+
+body{
+
+position: relative;
+width: 100%;
+height: 2205px;
+background: #FFFFFF;
+	font-family: 'Inter';
+font-style: normal;
+}
+
+p{
+	display: block;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+/*    width: 1440px;*/
+    width: 100%;
+    /* height: 91.95px; */
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    z-index: 1;
+}
+
+header .hca_logo{
+
+width: 103px;
+height: 43.95px;
+
+
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+.header{
+	margin: 0px ,20px;
+}
+footer{
+	position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 2.5rem; 
+}
+
+ 
+main{
+	max-width:1900px;
+}
+
+#main{
+position: absolute;
+width: 100%;
+height: 2137px;
+left: 0px;
+top: 0px;
+background: url('../images/hcs_hospital.png');
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+
+.mainform{
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 24px 44px;
+	gap: 32px;
+	position: absolute;
+	height: auto;
+	left: calc(50% - 1000px/2);
+	top: 135.95px;
+	background: #FFFFFF;
+	border: 1px solid #CFCFCF;
+	border-radius: 12px;
+	margin-top: 80px;
+}
+
+
+
+.formsection h3{
+
+	width: 722px;
+	height: 29px;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 29px;
+	color: #2B2F32;
+	margin: 15px;
+	margin-bottom: 0px;
+}
+.formsection p{
+	margin: 15px;
+color: #5F5F5F;
+font-size: 16px;
+line-height: 24px;
+}
+
+.row{
+	--bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap : wrap;
+}
+.column1{
+		width: 100%;
+}
+.column2{
+	width: 49.99999%;
+	flex: 0 0 auto;
+}
+.column3{
+	width: 33.33333333%;
+	flex: 0 0 auto;
+}
+
+
+
+.forminput{
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 8px 16px;
+margin: 15px 15px;
+border: 1px solid #CFD3D4;
+border-radius: 8px;
+flex: none;
+order: 0;
+flex-grow: 0;
+height: 58px;
+}
+
+
+.forminput input, select, textarea{
+border: 0px;
+width: 100%;
+display: block;
+font-size: 16px;
+font-weight: 400;
+line-height: 1.5;
+color: #ABAFB1;
+border-radius: var(--bs-border-radius);
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+outline: none;
+  border: none;
+  display:block;
+  line-height: 1.2em;
+  font-size: 14pt;
+}
+
+.forminput input{
+	-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+
+input[type="range"] {
+    width: 100%;
+    background: #5570F1;
+}
+
+input[type="radio"] {
+    width: 20px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  color: #5E6366;
+}
+
+fieldset{
+	border: 0px;
+}
+table{
+	width: 100%;
+	margin: 15px;
+}
+
+tr{
+	width: 100%;
+}
+
+td{
+	width: 25%;
+}
+td.button{
+padding: 0px 20px;
+}
+button.reviewbutton{
+	padding: 16px;
+border-radius: 12px;
+border: 1px;
+border-color: #000;
+width: 100%;
+font-size: 20px;
+font-weight: 400;
+text-decoration:none;
+}
+button.submitbutton{
+	padding: 16px;
+background-color: #5570F1;
+border-radius: 12px;
+width: 100%;
+font-size: 20px;
+font-weight: 400;
+text-decoration:none;
+color: #fff;
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: 10px;
+}
+
+#reviewModal{
+	top: 135.95px;
+    background: #FFFFFF;
+    border: 1px solid #CFCFCF;
+    border-radius: 12px;
+    margin-top: 80px;
+    width: 400px;
+}
+
+#reviewModal p{
+	border-bottom: 1px #000 solid;
+    padding: 6px;
+}

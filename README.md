@@ -1,4 +1,5 @@
-**User Input Validation (Real-Time)**
+### User Input Validation (Real-Time)
+```
 IF THE USER ENTERED AND THEN LEFT FIRST NAME FIELD
     CALL CHECK-FIRST-NAME
 ENDIF
@@ -22,8 +23,12 @@ ENDIF
 IF THE USER ENTERED AND THEN LEFT CONFIRM PASSWORD FIELD
     CALL CHECK-CONFIRM-PASSWORD
 ENDIF
+```
 
-**Handling Button Clicks**
+---
+
+### Handling Button Clicks
+```
 IF the REVIEW BUTTON was chosen
     CALL GET-DATA
     DISPLAY REVIEW MODAL
@@ -40,10 +45,13 @@ ENDIF
 IF the RESET BUTTON was chosen
     CLEAR THE FORM
 ENDIF
+```
 
+---
 
- **Retrieving and Displaying Data (Review Modal)**
- GET-DATA
+### Retrieving and Displaying Data (Review Modal)
+```
+GET-DATA
 
 RETRIEVE FORM DATA
 
@@ -91,10 +99,12 @@ IF FOOTER FLAG WAS SET
 ENDIF
 
 END GET-DATA
+```
 
+---
 
- **Input Validation Functions**
-
+### Input Validation Functions
+```
 CHECK-FIRST-NAME
     IF First Name is too short (less than 2 chars)
         DISPLAY "NAME TOO SHORT"
@@ -146,11 +156,18 @@ CHECK-CONFIRM-PASSWORD
         REMOVE ERROR MESSAGE
     ENDIF
 END CHECK-CONFIRM-PASSWORD
+```
 
- **Review Modal Handling**
+---
+
+### Review Modal Handling
+```
 HEADING-CHECK
     IF THIS IS THE FIRST DATA ITEM
         DISPLAY A HEADING
         SET FOOTER-NEEDED-FLAG
     ENDIF
 END HEADING-CHECK
+```
+
+

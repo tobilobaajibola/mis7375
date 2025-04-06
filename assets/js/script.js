@@ -241,3 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
         form.submit();
     });
 });
+  function clearForm() {
+    document.querySelector('form').reset();
+  }

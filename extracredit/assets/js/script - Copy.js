@@ -156,34 +156,7 @@ reviewButton.addEventListener('click', function (e) {
 });
 // Function to open review modal
 function showReviewModal() {
-   reviewContent.innerHTML = "";
-
-    const formElements = form.elements;
-    let reviewData = {};
-
-    for (let element of formElements) {
-        if (element.type !== "submit" && element.type !== "button") {
-            let label = document.querySelector(`label[for='${element.id}']`)?.textContent || element.name;
-
-            if (element.type === "radio" || element.type === "checkbox") {
-                if (element.checked) {
-                    if (!reviewData[label]) {
-                        reviewData[label] = [];
-                    }
-                    reviewData[label].push(element.value);
-                }
-            } else if (element.value && element.value.trim() !== "") { // Fix applied here
-                reviewData[label] = element.value;
-            }
-        }
-    }
-
-    for (let key in reviewData) {
-        let value = Array.isArray(reviewData[key]) ? reviewData[key].join(", ") : reviewData[key];
-        reviewContent.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
-    }
-
-    reviewModal.style.display = "block";
+    reviewModal.style.display = 'block'; // Replace with your own modal opening code
 }
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
@@ -245,36 +218,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-//   reviewButton.addEventListener("click", function () {
-//     reviewContent.innerHTML = "";
+  reviewButton.addEventListener("click", function () {
+    reviewContent.innerHTML = "";
 
-//     const formElements = form.elements;
-//     let reviewData = {};
+    const formElements = form.elements;
+    let reviewData = {};
 
-//     for (let element of formElements) {
-//         if (element.type !== "submit" && element.type !== "button") {
-//             let label = document.querySelector(`label[for='${element.id}']`)?.textContent || element.name;
+    for (let element of formElements) {
+        if (element.type !== "submit" && element.type !== "button") {
+            let label = document.querySelector(`label[for='${element.id}']`)?.textContent || element.name;
 
-//             if (element.type === "radio" || element.type === "checkbox") {
-//                 if (element.checked) {
-//                     if (!reviewData[label]) {
-//                         reviewData[label] = [];
-//                     }
-//                     reviewData[label].push(element.value);
-//                 }
-//             } else if (element.value && element.value.trim() !== "") { // Fix applied here
-//                 reviewData[label] = element.value;
-//             }
-//         }
-//     }
+            if (element.type === "radio" || element.type === "checkbox") {
+                if (element.checked) {
+                    if (!reviewData[label]) {
+                        reviewData[label] = [];
+                    }
+                    reviewData[label].push(element.value);
+                }
+            } else if (element.value && element.value.trim() !== "") { // Fix applied here
+                reviewData[label] = element.value;
+            }
+        }
+    }
 
-//     for (let key in reviewData) {
-//         let value = Array.isArray(reviewData[key]) ? reviewData[key].join(", ") : reviewData[key];
-//         reviewContent.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
-//     }
+    for (let key in reviewData) {
+        let value = Array.isArray(reviewData[key]) ? reviewData[key].join(", ") : reviewData[key];
+        reviewContent.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+    }
 
-//     reviewModal.style.display = "block";
-// });
+    reviewModal.style.display = "block";
+});
 
 
     editButton.addEventListener("click", function () {

@@ -493,9 +493,9 @@ document.getElementById("confirmSubmit").addEventListener("click", () => {
   // Trigger actual form submission so the cookie logic runs
   document.getElementById("patientform").requestSubmit(); // this triggers the submit event properly
 
-  // document.getElementById("closeModal").addEventListener("click", () => {
-  //   location.reload();
-  // });
+  document.getElementById("closeModal").addEventListener("click", () => {
+    location.reload();
+  });
 });
 
 

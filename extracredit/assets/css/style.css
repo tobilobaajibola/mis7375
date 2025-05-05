@@ -55,6 +55,12 @@ flex-grow: 0;
   background-color: #f1f1f1;
   padding: 20px 10px;
 }
+.sticky{
+  position: fixed;
+   top: 0;
+  width: 100%;
+  z-index: 2000;
+}
 
 .header a {
   float: left;
@@ -358,5 +364,7 @@ color: #fff;
   transition: width 0.3s;
 }
 
-  
+iframe{
+  width: 100%;
+}
   

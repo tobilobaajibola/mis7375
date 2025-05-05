@@ -54,8 +54,14 @@ flex-grow: 0;
   overflow: hidden;
   background-color: #f1f1f1;
   padding: 20px 10px;
-}
 
+}
+.sticky{
+	position: fixed;
+   top: 0;
+  width: 100%;
+  z-index: 2000;
+}
 .header a {
   float: left;
   color: black;
@@ -308,4 +314,7 @@ color: #fff;
     margin: 0px 0px;
     background-color: #bb5656;
     color: #fff;
+}
+iframe{
+	width: 100%;
 }

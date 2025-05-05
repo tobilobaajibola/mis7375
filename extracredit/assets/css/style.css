@@ -253,12 +253,12 @@ td{
 td.button{
 padding: 0px 20px;
 }
-button.reviewbutton{
+button.reviewbutton, button.prev, button.next{
 	padding: 16px;
 border-radius: 12px;
 border: 1px;
 border-color: #000;
-width: 100%;
+/*width: 100%;*/
 font-size: 20px;
 font-weight: 400;
 text-decoration:none;
@@ -309,3 +309,54 @@ color: #fff;
     background-color: #bb5656;
     color: #fff;
 }
+
+ form fieldset {
+    display: none;
+  }
+  form fieldset.active {
+    display: block;
+  }
+
+/* Step Tracker */
+#step-tracker {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#step-tracker .step {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  margin: 0 5px;
+  font-weight: bold;
+  color: #888;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#step-tracker .step.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Progress Bar */
+#progress-container {
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  height: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #4caf50;
+  transition: width 0.3s;
+}
+
+  
+  

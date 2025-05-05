@@ -155,13 +155,67 @@ reviewButton.addEventListener('click', function (e) {
     showReviewModal(); // Replace this with your actual function to open the review
 });
 // Function to open review modal
+// function showReviewModal() {
+//     reviewContent.innerHTML = "";
+
+//     const excludedNames = ['password', 'g-recaptcha-response'];
+//     const excludedTypes = ['password', 'hidden'];
+//     const excludedIds = ['g-recaptcha']; // Add your CAPTCHA div ID if needed
+
+//     let reviewData = {};
+
+//     for (let element of form.elements) {
+//         const label = document.querySelector(`label[for='${element.id}']`)?.textContent || element.name;
+
+//         if (
+//             element.type === "submit" ||
+//             element.type === "button" ||
+//             excludedTypes.includes(element.type) ||
+//             excludedNames.includes(element.name) ||
+//             excludedIds.includes(element.id)
+//         ) {
+//             continue;
+//         }
+
+//         if (element.type === "radio" || element.type === "checkbox") {
+//             if (element.checked) {
+//                 if (!reviewData[label]) {
+//                     reviewData[label] = [];
+//                 }
+//                 reviewData[label].push(element.value);
+//             }
+//         } else if (element.value.trim() !== "") {
+//             reviewData[label] = element.value;
+//         }
+//     }
+
+//     for (let key in reviewData) {
+//         const value = Array.isArray(reviewData[key]) ? reviewData[key].join(", ") : reviewData[key];
+//         reviewContent.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+//     }
+
+//     reviewModal.style.display = "block";
+// }
+
 function showReviewModal() {
    reviewContent.innerHTML = "";
 
     const formElements = form.elements;
+        const excludedNames = ['password', 'g-recaptcha-response'];
+    const excludedTypes = ['password', 'hidden'];
+    const excludedIds = ['g-recaptcha']; // Add your CAPTCHA div ID if needed
     let reviewData = {};
 
     for (let element of formElements) {
+         if (
+            element.type === "submit" ||
+            element.type === "button" ||
+            excludedTypes.includes(element.type) ||
+            excludedNames.includes(element.name) ||
+            excludedIds.includes(element.id)
+        ) {
+            continue;
+        }
         if (element.type !== "submit" && element.type !== "button") {
             let label = document.querySelector(`label[for='${element.id}']`)?.textContent || element.name;
 
@@ -185,6 +239,8 @@ function showReviewModal() {
 
     reviewModal.style.display = "block";
 }
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const reviewButton = document.getElementById("reviewButton");
@@ -281,60 +337,201 @@ document.addEventListener("DOMContentLoaded", function () {
         reviewModal.style.display = "none";
     });
 
-    confirmSubmit.addEventListener("click", function () {
-        saveName();   // <-- Save the cookie first
-        form.submit();
-    });
+    // confirmSubmit.addEventListener("click", function () {
+    //     saveName();   // <-- Save the cookie first
+    //     form.submit();
+    // });
 });
   function clearForm() {
     document.querySelector('form').reset();
   }
+// confirmSubmit
 
+// close button to refresh the page:
+// document.getElementById("closeThankYou").addEventListener("click", function () {
+//   location.reload(); // Refresh the page (preserves localStorage)
+// });
 
   // assignment 4
 
-  function setCookie(name, value, days) {
-    const expires = new Date(Date.now() + days * 86400 * 1000).toUTCString();
-    document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("patientform");
+  const fieldsets = form.querySelectorAll("fieldset");
+  const steps = document.querySelectorAll("#step-tracker .step");
+  const progressBar = document.getElementById("progress-bar");
+  let currentStep = 0;
 
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
-}
+  const heading = document.getElementById("welcomeHeading");
+  const firstNameInput = form.querySelector('input[name="first_name"]');
+  const rememberMe = document.getElementById("rememberMe");
 
-function deleteCookie(name) {
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-}
+  const storedName = getCookie("firstName");
+  const storedForm = localStorage.getItem("formData");
 
-window.onload = function() {
-    let firstName = getCookie('firstName');
-    const heading = document.getElementById('welcomeHeading');
-    const firstNameInput = document.querySelector('input[name="first_name"]');
+  // Show welcome message and restoration options
+  if (storedName) {
+    heading.innerHTML = `
+      Welcome back, ${storedName}!
+      <button id="continueBtn">Continue where I left off</button>
+      <button onclick="newUser()">Not ${storedName}? Click here</button>
+    `;
+    if (firstNameInput) {
+      firstNameInput.value = storedName;
+    }
 
-    if (firstName) {
-        heading.innerHTML = `Welcome back, ${firstName}! <button onclick="newUser()">Not ${firstName}? Click here</button>`;
-        if (firstNameInput) {
-            firstNameInput.value = firstName;
+    document.getElementById("continueBtn").addEventListener("click", () => {
+      if (storedForm) loadFormData();
+    });
+  } else {
+    heading.innerText = "Welcome New User!";
+  }
+
+  // Show the first step and update progress
+  fieldsets[currentStep].classList.add("active");
+  updateUI();
+
+  // Navigation
+  form.querySelectorAll(".next").forEach(btn =>
+    btn.addEventListener("click", () => {
+      if (validateCurrentStep()) {
+        currentStep = Math.min(currentStep + 1, fieldsets.length - 1);
+        showStep(currentStep);
+      }
+    })
+  );
+
+  form.querySelectorAll(".prev").forEach(btn =>
+    btn.addEventListener("click", () => {
+      currentStep = Math.max(currentStep - 1, 0);
+      showStep(currentStep);
+    })
+  );
+
+  // Save to localStorage on input change
+  form.querySelectorAll("input, select, textarea").forEach(field => {
+    field.addEventListener("input", saveFormData);
+  });
+
+  // Save cookie if "Remember Me" is checked
+  form.addEventListener("submit", (e) => {
+    if (rememberMe && firstNameInput.value.trim()) {
+      setCookie("firstName", firstNameInput.value.trim(), 2);
+    } else {
+      deleteCookie("firstName");
+    }
+  });
+
+  function showStep(index) {
+    fieldsets.forEach((fs, i) => fs.classList.toggle("active", i === index));
+    currentStep = index;
+    updateUI();
+  }
+
+  function updateUI() {
+    steps.forEach((step, i) => {
+      step.classList.toggle("active", i === currentStep);
+    });
+    const progressPercent = ((currentStep + 1) / fieldsets.length) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+  }
+
+  function validateCurrentStep() {
+    const currentFields = fieldsets[currentStep].querySelectorAll("input, select, textarea");
+    for (let field of currentFields) {
+      if (!field.checkValidity()) {
+        field.reportValidity();
+        return false;
+      }
+    }
+    return true;
+  }
+
+
+  function loadFormData() {
+    const data = JSON.parse(localStorage.getItem("formData") || "{}");
+    form.querySelectorAll("input, select, textarea").forEach(field => {
+      if (data.hasOwnProperty(field.name)) {
+        if (field.type === "checkbox" || field.type === "radio") {
+          field.checked = data[field.name];
+        } else {
+          field.value = data[field.name];
         }
-    } else {
-        heading.innerText = "Welcome New User!";
-    }
-}
+      }
+    });
+  }
 
-function newUser() {
-    deleteCookie('firstName');
+  // Cookie Helpers
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+  }
+
+  function getCookie(name) {
+    return document.cookie
+      .split("; ")
+      .find(row => row.startsWith(name + "="))
+      ?.split("=")[1];
+  }
+
+  function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  }
+
+  window.newUser = () => {
+    deleteCookie("firstName");
+    localStorage.removeItem("formData");
     location.reload();
-}
+  };
+});
 
-function saveName(event) {
-    const firstName = document.querySelector('input[name="first_name"]').value.trim();
-    const rememberMe = document.getElementById('rememberMe').checked;
+document.getElementById("confirmSubmit").addEventListener("click", () => {
+  saveFormData();
 
-    if (rememberMe && firstName) {
-        setCookie('firstName', firstName, 2); // expires in 2 days
-    } else {
-        deleteCookie('firstName');
-    }
-}
+  reviewContent.innerHTML = "<h4>Thank you for submitting!</h4><button id='closeModal'>Close</button>";
+  document.getElementById("editButton").style.display = "none";
+  document.getElementById("confirmSubmit").style.display = "none";
+  // Trigger actual form submission so the cookie logic runs
+  document.getElementById("patientform").requestSubmit(); // this triggers the submit event properly
+
+  // document.getElementById("closeModal").addEventListener("click", () => {
+  //   location.reload();
+  // });
+});
+
+
+  function saveFormData() {
+    const formData = {};
+    form.querySelectorAll("input, select, textarea").forEach(field => {
+      if (field.type === "checkbox" || field.type === "radio") {
+        formData[field.name] = field.checked;
+      } else {
+        formData[field.name] = field.value;
+      }
+    });
+    localStorage.setItem("formData", JSON.stringify(formData));
+ 
+  }
+
+
+// get the list of states in j
+document.addEventListener("DOMContentLoaded", () => {
+  const stateSelect = document.getElementById("state");
+
+  fetch("assets/js/states.json") // replace with your actual API URL
+    .then(response => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(state => {
+        const option = document.createElement("option");
+        option.value = state.code || state.name; // use appropriate key
+        option.textContent = state.name;
+        stateSelect.appendChild(option);
+      });
+    })
+    .catch(error => {
+      console.error("Error loading states:", error);
+      // Optionally show an error message in the UI
+    });
+});
